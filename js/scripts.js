@@ -59,6 +59,7 @@ googleMapsApp.controller('googleMapsController', function($scope, $http){
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
 		directionsDisplay.setMap(map);
+		directionsDisplay.setPanel(document.getElementById('list-window'));
         directionsService.route({
           origin: 'Atlanta, GA',
           destination: 'New York, NY',
