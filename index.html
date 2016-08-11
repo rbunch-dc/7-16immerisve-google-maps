@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&v=3.exp&signed_in=true"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&v=3.exp&signed_in=true&key=AIzaSyDyOX5Hn3vZ1egpC9T7g-8cNz_1zZmVazI"></script>
 
 	<script type="text/javascript" src="js/cities.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
@@ -18,12 +18,25 @@
 
 	<div id="map"></div>
 
-	<table border=1>
-		<tr ng-repeat="city in cities">
-			<td>{{city.city}}</td>
-			<td>{{city.state}}</td>
-		</tr>
-	</table>
+	<div id="list-window">
+		<form ng-submit="updateMarkers()">
+			<input id="filter-input" ng-model="citiesFilter" type="text">
+			<input type="submit" value="Update the map">
+
+			<table border=1>
+				<tr ng-repeat="city in (filteredCities = (cities | filter: citiesFilter)) track by $index">
+					<td>
+						<a href="" ng-click="triggerClick($index)">{{city.city}}</a>
+					</td>
+					<td>{{city.state}}</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+
 
 </body>
 </html>
+
+
